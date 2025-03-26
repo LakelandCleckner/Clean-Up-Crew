@@ -20,6 +20,8 @@ public class UIController : MonoBehaviour
     public LevelUpSelectionButton[] levelUpButtons;
 
     public GameObject levelUpPanel;
+
+    public TMP_Text coinText;
     // Update is called once per frame
     void Update()
     {
@@ -39,5 +41,10 @@ public class UIController : MonoBehaviour
     {
         levelUpPanel.SetActive(false);
         Time.timeScale = 1;
+    }
+
+    public void UpdateCoins()
+    {
+        coinText.text = "Recycling: " + CoinController.instance.currentCoins;
     }
 }
