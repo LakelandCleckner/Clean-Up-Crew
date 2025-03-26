@@ -26,24 +26,32 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (knockbackCounter > 0)
+        if (PlayerController.instance.gameObject.activeSelf)
         {
-            knockbackCounter -= Time.deltaTime;
-            if (moveSpeed > 0)
+            if (knockbackCounter > 0)
             {
-                moveSpeed = -moveSpeed * 2f;
+                knockbackCounter -= Time.deltaTime;
+                if (moveSpeed > 0)
+                {
+                    moveSpeed = -moveSpeed * 2f;
+                }
+
+                if (knockbackCounter <= 0)
+                {
+                    moveSpeed = Mathf.Abs(moveSpeed * .5f);
+                }
             }
 
-            if (knockbackCounter <= 0)
+            rb.velocity = (target.position - transform.position).normalized * moveSpeed;
+
+            if (hitCounter > 0f)
             {
-                moveSpeed = Mathf.Abs(moveSpeed * .5f);
+                hitCounter -= Time.deltaTime;
             }
         }
-        rb.velocity = (target.position - transform.position).normalized * moveSpeed;
-
-        if (hitCounter > 0f)
+        else
         {
-            hitCounter -= Time.deltaTime;
+            rb.velocity = Vector2.zero;
         }
     }
 
