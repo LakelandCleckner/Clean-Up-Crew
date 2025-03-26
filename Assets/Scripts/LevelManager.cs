@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
 
     private bool gameActive;
     public float timer;
+    public float waitToShowEndScreen = 1f;
     void Start()
     {
         gameActive = true;
@@ -29,6 +30,18 @@ public class LevelManager : MonoBehaviour
 
     public void EndLevel()
     {
+        gameActive = false;
 
+        StartCoroutine(EndLevelCo());
+    }
+
+    IEnumerator EndLevelCo()
+    {
+        yield return new WaitForSeconds(waitToShowEndScreen);
+        float minutes = Mathf.FloorToInt(timer / 60f);
+        float seconds = Mathf.FloorToInt(timer % 60);
+
+        UIController.instance.endTimeText.text = minutes.ToString() + " mins " + seconds.ToString("00" + " secs ");
+        UIController.instance.levelEndScreen.SetActive(true);
     }
 }
