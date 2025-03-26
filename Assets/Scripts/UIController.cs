@@ -22,6 +22,11 @@ public class UIController : MonoBehaviour
     public GameObject levelUpPanel;
 
     public TMP_Text coinText;
+
+    public PlayerStatUpgradeDisplay moveSpeedUpgradeDisplay, healthUpgradeDisplay, pickupRangeUpgradeDisplay, maxWeaponsUpgradeDisplay;
+
+    public TMP_Text timeText;
+
     // Update is called once per frame
     void Update()
     {
@@ -46,5 +51,37 @@ public class UIController : MonoBehaviour
     public void UpdateCoins()
     {
         coinText.text = "Recycling: " + CoinController.instance.currentCoins;
+    }
+
+    public void PurchaseMoveSpeed()
+    {
+        PlayerStatController.instance.PurchaseMoveSpeed();
+        SkipLevelUp();
+    }
+
+    public void PurchaseHealth()
+    {
+        PlayerStatController.instance.PurchaseHealth();
+        SkipLevelUp();
+    }
+
+    public void PurchasePickupRange()
+    {
+        PlayerStatController.instance.PurchasePickupRange();
+        SkipLevelUp();
+    }
+
+    public void PurchaseMaxWeapons()
+    {
+        PlayerStatController.instance.PurchaseMaxWeapons();
+        SkipLevelUp();
+    }
+
+    public void UpdateTimer(float time)
+    {
+        float minutes = Mathf.FloorToInt( time / 60f);
+        float seconds = Mathf.FloorToInt( time % 60);
+
+        timeText.text = "Time: " + minutes + ":" + seconds.ToString("00");
     }
 }
