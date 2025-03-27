@@ -92,7 +92,7 @@ MonoBehaviour:
   health: 5
   knockBackTime: 0.5
   expToGive: 1
-  coinValue: 500
+  coinValue: 1
   coinDropRate: 0.5
 --- !u!114 &3541105355502127694
 MonoBehaviour:

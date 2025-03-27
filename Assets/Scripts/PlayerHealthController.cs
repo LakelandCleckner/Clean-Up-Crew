@@ -43,6 +43,9 @@ public class PlayerHealthController : MonoBehaviour
         {
             gameObject.SetActive(false);
             LevelManager.instance.EndLevel();
+
+            SFXManager.instance.PlaySFX(3);
+
         }
 
         healthSlider.value = currentHealth;
